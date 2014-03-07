@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  realteam: MyString
+  shirt: MyString
+  position: MyString
+  nacionality: MyString
+  transferable: false
+
+two:
+  name: MyString
+  realteam: MyString
+  shirt: MyString
+  position: MyString
+  nacionality: MyString
+  transferable: false
