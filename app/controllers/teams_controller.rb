@@ -16,6 +16,7 @@ class TeamsController < ApplicationController
   # GET /players/new
   def new
     @team = Team.new
+    @leagues = Leagues.all
   end
 
   # GET /players/1/edit
@@ -27,6 +28,8 @@ class TeamsController < ApplicationController
 
     @team = Team.new(team_params)
     @team.user = current_user
+    @leagues = Leagues.all
+
     respond_to do |format|
       if @team.save
         format.html { redirect_to @team, notice: 'Team was successfully created.' }
@@ -70,6 +73,6 @@ class TeamsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_params
-      params.require(:team).permit(:name)
+      params.require(:team).permit(:name, :user_id, :league_id)
     end
 end

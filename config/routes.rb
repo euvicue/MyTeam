@@ -1,5 +1,6 @@
 MyTeam::Application.routes.draw do
   devise_for :users
+  resources :users
   resources :players
   resources :leagues
   resources :teams

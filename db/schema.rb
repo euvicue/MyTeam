@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140312223950) do
+ActiveRecord::Schema.define(version: 20140313223950) do
 
   create_table "leagues", force: true do |t|
     t.string   "name"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20140312223950) do
     t.string   "shirt"
     t.string   "position"
     t.string   "nacionality"
-    t.integer  "value"
+    t.boolean  "transferable"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
