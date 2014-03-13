@@ -26,7 +26,7 @@ class TeamsController < ApplicationController
   def create
 
     @team = Team.new(team_params)
-
+    @team.user = current_user
     respond_to do |format|
       if @team.save
         format.html { redirect_to @team, notice: 'Team was successfully created.' }
