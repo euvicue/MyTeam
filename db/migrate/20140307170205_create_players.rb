@@ -6,7 +6,7 @@ class CreatePlayers < ActiveRecord::Migration
       t.string :shirt
       t.string :position
       t.string :nacionality
-      t.boolean :transferable
+      t.integer :value
 
       t.timestamps
     end

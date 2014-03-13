@@ -1,5 +1,6 @@
 class TeamsController < ApplicationController
     before_action :set_team, only: [:show, :edit, :update, :destroy ]
+    before_filter :authenticate_user!
 
   # GET /players
   # GET /players.json
@@ -23,6 +24,7 @@ class TeamsController < ApplicationController
   # POST /players
   # POST /players.json
   def create
+
     @team = Team.new(team_params)
 
     respond_to do |format|
