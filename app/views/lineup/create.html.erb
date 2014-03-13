@@ -1,0 +1,34 @@
+<html>
+<title>Team Line up
+</title>
+<body>
+<h1>Create Time Line up</h1>
+<%= form_tag f %>
+    <div class="field">
+    <%= label :keeper %><br>
+    <%= select :keeper_id, @players.map { |p| [p.shirt, p.id] } %>
+      
+  </div>
+    <div class="field">
+    <%= f.label :def1 %><br>
+    <%= f.select :def1_id, @players.map { |p| [p.shirt, p.id] } %>
+      
+  </div>
+    <div class="field">
+    <%= f.label :def2 %><br>
+    <%= f.select :def2_id, @players.map { |p| [p.shirt, p.id] } %>
+      
+  </div>
+
+    <div class="field">
+    <%= f.label :def3 %><br>
+    <%= f.select :def3_id, @players.map { |p| [p.shirt, p.id] } %>
+      
+  </div>
+    <div class="field">
+    <%= f.label :def4 %><br>
+    <%= f.select :def4_id, @players.map { |p| [p.shirt, p.id] } %>
+  </div>
+  <% end %>
+</body>
+</html>

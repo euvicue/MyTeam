@@ -1,5 +1,5 @@
 class PlayersController < ApplicationController
-  before_action :set_player, only: [:show, :edit, :update, :destroy]
+  before_action :set_player, only: [:show, :edit, :update, :destroy ]
 
   # GET /players
   # GET /players.json
@@ -10,6 +10,7 @@ class PlayersController < ApplicationController
   # GET /players/1
   # GET /players/1.json
   def show
+    @players = Player.all
   end
 
   # GET /players/new
@@ -20,7 +21,6 @@ class PlayersController < ApplicationController
   # GET /players/1/edit
   def edit
   end
-
   # POST /players
   # POST /players.json
   def create

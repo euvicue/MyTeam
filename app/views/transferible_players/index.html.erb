@@ -1,0 +1,35 @@
+<html>
+<title>Transferible Players
+</title>
+<body>
+<h1>Transferible Players List</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Realteam</th>
+      <th>Shirt</th>
+      <th>Position</th>
+      <th>Nacionality</th>
+      <th>Transferable</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @players.each do |player| %>
+      <tr>
+        <td><%= player.name %></td>
+        <td><%= player.realteam %></td>
+        <td><%= player.shirt %></td>
+        <td><%= player.position %></td>
+        <td><%= player.nacionality %></td>
+        <td><%= player.transferable %></td>
+        <td><%= link_to 'Bid', player %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<html>
+<title>Team Line up
+</title>
+<body>
+<h1>Time Line up</h1>
+<p> System: 4-4-2 </p>
+
+<% keeper=@players.find(1)%>
+<table align="center">
+  <thead>
+    <tr>
+      <th>Keeper:</th><th></th><th><%= keeper.shirt %></th><th></th><th></th>
+    </tr>
+    <tr>
+      <th>Defense:</th><th><%= @players.where("position='DEF'").first.shirt %></th><th><%= @players.where("position='DEF'").first.shirt %></th><th><%= @players.where("position='DEF'").first.shirt %></th><th><%= @players.where("position='DEF'").first.shirt %></th>
+    </tr>
+    <tr>
+      <th>Midfielders:</th><th><%= @players.where("position='MED'").first.shirt %></th><th><%= @players.where("position='MED'").first.shirt %></th><th><%= @players.where("position='MED'").first.shirt %></th><th><%= @players.where("position='MED'").first.shirt %></th>
+    </tr>
+    <tr>
+      <th>Strikers:</th><th><th><%= @players.where("position='DEL'").first.shirt %></th><th><%= @players.where("position='DEL'").first.shirt %></th><th></th><th></th>
+    </tr>
+  </thead>
+
+
+</table>
+</body>
+</html>

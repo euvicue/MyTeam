@@ -1,0 +1,2 @@
+module TransferiblePlayersHelper
+end

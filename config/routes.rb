@@ -3,7 +3,11 @@ MyTeam::Application.routes.draw do
   resources :players
   resources :leagues
   resources :teams
-
+  get "transferible_players/index"
+  get "match_day/index"
+  get "match/index"
+  get "lineup/show"
+  get "lineup/create"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

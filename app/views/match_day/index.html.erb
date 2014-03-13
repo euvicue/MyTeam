@@ -1,0 +1,26 @@
+<html>
+<title>Matchs Day List
+</title>
+<body>
+<h1>Matchs Day List</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+     <% (1..30).each do |i| %>
+      <tr>
+        <td><%= i %></td>
+        <td><a href="http://localhost:3000/match/index">See more</a></td>
+     </tr>
+     <% end %>
+  </tbody>
+</table>
+</body>
+</html
+

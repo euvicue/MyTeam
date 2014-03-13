@@ -1,0 +1,23 @@
+<html>
+ <head>
+  <title>Editar Equipo</title>
+ </head>
+ <body>
+ <h1>Editar Equipo</h1>
+
+ <form action='../update/<%= @team.id %>" method="POST"'>
+  <input id="team_id" name="team[id]" size="30" 
+         type="hidden" value="<%= @team.id %>" />
+  <p><b>Titulo</b><br>
+  <input id="team_titulo" name="team[name]" size="30" 
+         type="text" value="<%= @team.name %>" />
+  </p>
+
+  <input type="submit" value="Update" />
+ </form>
+  <a href="/teams/index">
+  Back 
+ </a>
+
+ </body>
+</html>
