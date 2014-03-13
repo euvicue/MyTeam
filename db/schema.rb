@@ -25,16 +25,21 @@ ActiveRecord::Schema.define(version: 20140312223950) do
     t.string   "shirt"
     t.string   "position"
     t.string   "nacionality"
-    t.boolean  "transferable"
+    t.integer  "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "teams", force: true do |t|
     t.string   "name"
+    t.integer  "user_id"
+    t.integer  "league_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "teams", ["league_id"], name: "index_teams_on_league_id"
+  add_index "teams", ["user_id"], name: "index_teams_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "username",               default: "", null: false
