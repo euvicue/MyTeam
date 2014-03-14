@@ -3,7 +3,22 @@
 </title>
 <body>
 <h1>Transferible Players List</h1>
-
+<br>
+<br>
+<table>
+<tr>
+<div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+</tr>
+<tr>
+   <div class="field">
+    <%= f.label :league %><br>
+    <%= f.select :league_id, @leagues.map { |l| [l.name, l.id] } %>
+<tr>      
+  </div>
+</table>
 <table>
   <thead>
     <tr>

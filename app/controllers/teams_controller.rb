@@ -16,7 +16,7 @@ class TeamsController < ApplicationController
   # GET /players/new
   def new
     @team = Team.new
-    @leagues = Leagues.all
+    @leagues = League.all
   end
 
   # GET /players/1/edit
@@ -28,7 +28,7 @@ class TeamsController < ApplicationController
 
     @team = Team.new(team_params)
     @team.user = current_user
-    @leagues = Leagues.all
+    @leagues = League.all
 
     respond_to do |format|
       if @team.save

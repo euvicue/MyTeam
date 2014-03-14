@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140313223950) do
+ActiveRecord::Schema.define(version: 20140314170218) do
 
   create_table "leagues", force: true do |t|
     t.string   "name"
+    t.boolean  "private"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -40,6 +41,11 @@ ActiveRecord::Schema.define(version: 20140313223950) do
 
   add_index "teams", ["league_id"], name: "index_teams_on_league_id"
   add_index "teams", ["user_id"], name: "index_teams_on_user_id"
+
+  create_table "transfer_markets", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "username",               default: "", null: false

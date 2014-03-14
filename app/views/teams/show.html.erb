@@ -5,6 +5,12 @@
   <%= @team.name %>
 </p>
 
+<p>
+  <strong>Name:</strong>
+  <%= @team.league.name %>
+</p>
+
+
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %> |
   <a href='/lineup/index'> See lineup </a>

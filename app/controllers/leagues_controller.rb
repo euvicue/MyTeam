@@ -9,6 +9,9 @@ class LeaguesController < ApplicationController
     @league = League.new
   end
 
+  def show
+    
+  end
   def create
     @league = League.new(league_params)
     if @league.save
@@ -21,6 +24,6 @@ class LeaguesController < ApplicationController
   private
 
   def league_params
-    params.require(:league).permit(:name)
+    params.require(:league).permit(:name, :private)
   end
 end
