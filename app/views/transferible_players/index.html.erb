@@ -7,21 +7,6 @@
 <br>
 
 <table>
-<tr> NACIONALIDADES:
-  <% @search = Player.all %>
-  <%= form_for(@search) do |f| %>
-  <% @nacs = Player.select(:nacionality).uniq%>
-  <% @nacs.each do |n| %>
-  <%=  n.nacionality %>
-  <div class="field">
-    <%= f.label :league %><br>
-    <%= f.select :league_id, @nacs.map { |n| [n.nacionality, n.id] } %>
-  </div>
-  <% end %>
-  <% end %>
-</tr>
-</table>
-<table>
   <thead>
     <tr>
       <th>Name</th>
@@ -29,7 +14,7 @@
       <th>Shirt</th>
       <th>Position</th>
       <th>Nacionality</th>
-      <th>Transferable</th>
+      <th>Value</th>
       <th></th>
     </tr>
   </thead>
@@ -42,7 +27,7 @@
         <td><%= player.shirt %></td>
         <td><%= player.position %></td>
         <td><%= player.nacionality %></td>
-        <td><%= player.transferable %></td>
+        <td><%= player.value%></td>
         <td><%= link_to 'Bid', player %></td>
       </tr>
     <% end %>

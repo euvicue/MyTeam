@@ -1,0 +1,27 @@
+<html>
+<title>Teams List
+</title>
+<body>
+<h1>Teams List</h1>
+<br>
+<br>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>League</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @teams.each do |team| %>
+      <tr>
+        <td><%= team.name %></td>
+        <td><%= team.league.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</body>
+</html>
