@@ -5,19 +5,21 @@
 <h1>Transferible Players List</h1>
 <br>
 <br>
+
 <table>
-<tr>
-<div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-</tr>
-<tr>
-   <div class="field">
+<tr> NACIONALIDADES:
+  <% @search = Player.all %>
+  <%= form_for(@search) do |f| %>
+  <% @nacs = Player.select(:nacionality).uniq%>
+  <% @nacs.each do |n| %>
+  <%=  n.nacionality %>
+  <div class="field">
     <%= f.label :league %><br>
-    <%= f.select :league_id, @leagues.map { |l| [l.name, l.id] } %>
-<tr>      
+    <%= f.select :league_id, @nacs.map { |n| [n.nacionality, n.id] } %>
   </div>
+  <% end %>
+  <% end %>
+</tr>
 </table>
 <table>
   <thead>

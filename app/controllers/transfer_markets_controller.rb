@@ -1,0 +1,2 @@
+class TransferMarketsController < ApplicationController
+end

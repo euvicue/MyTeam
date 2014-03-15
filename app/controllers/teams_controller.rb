@@ -29,6 +29,8 @@ class TeamsController < ApplicationController
     @team = Team.new(team_params)
     @team.user = current_user
     @leagues = League.all
+    player= Player.find(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
+
 
     respond_to do |format|
       if @team.save
@@ -39,6 +41,7 @@ class TeamsController < ApplicationController
         format.json { render json: @team.errors, status: :unprocessable_entity }
       end
     end
+    @team.team_players.create(player: player)
   end
 
   # PATCH/PUT /players/1

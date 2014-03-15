@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140314170218) do
+ActiveRecord::Schema.define(version: 20140314190217) do
 
   create_table "leagues", force: true do |t|
     t.string   "name"
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 20140314170218) do
     t.datetime "updated_at"
   end
 
+  create_table "team_players", force: true do |t|
+    t.integer  "team_id"
+    t.integer  "player_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "team_players", ["player_id"], name: "index_team_players_on_player_id"
+  add_index "team_players", ["team_id"], name: "index_team_players_on_team_id"
+
   create_table "teams", force: true do |t|
     t.string   "name"
     t.integer  "user_id"
@@ -43,9 +53,14 @@ ActiveRecord::Schema.define(version: 20140314170218) do
   add_index "teams", ["user_id"], name: "index_teams_on_user_id"
 
   create_table "transfer_markets", force: true do |t|
+    t.integer  "league_id"
+    t.integer  "player_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "transfer_markets", ["league_id"], name: "index_transfer_markets_on_league_id"
+  add_index "transfer_markets", ["player_id"], name: "index_transfer_markets_on_player_id"
 
   create_table "users", force: true do |t|
     t.string   "username",               default: "", null: false
