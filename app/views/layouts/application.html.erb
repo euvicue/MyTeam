@@ -72,10 +72,12 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
+              <li class="nav-header">Actions</li>
+              <% if user_signed_in? %>
+                <li><%= link_to "Manage my teams", "/user/#{current_user.id}/teams" %></li>
+                <li><%= link_to "Create new league", new_league_path %></li>
+              <% end %>
+              <li><%= link_to "Find new leagues", leagues_path %></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
