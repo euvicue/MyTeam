@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20140314190217) do
     t.string   "shirt"
     t.string   "position"
     t.string   "nacionality"
-    t.boolean  "transferable"
+    t.integer  "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
