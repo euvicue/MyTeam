@@ -6,6 +6,7 @@ MyTeam::Application.routes.draw do
   resources :teams
   resources :transfer_market
   get "transferible_players/index"
+  get "user_teams/index"
   get "match_day/index"
   get "match/index"
   get "lineup/show"
