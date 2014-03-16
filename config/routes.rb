@@ -1,13 +1,16 @@
 MyTeam::Application.routes.draw do
+
   devise_for :users
   resources :users
   resources :players
-  resources :leagues do
-    resources :match_day
-  end
+  resources :leagues
   resources :teams
   resources :transfer_market
-  resources :team_players
+  resources :team_players  
+
+  get '/teams/:id/lineup', :to => 'teams#lineup', :as => 'lineup'
+  get '/teams/:id/create_lineup', :to => 'teams#create_lineup', :as => 'create_lineup'
+  get '/leagues/:id/match_days', :to => 'leagues#match_days', :as => 'match_days'
   get "transferible_players/index"
   get "user_teams/index"
   get "rankings/index"
@@ -16,6 +19,7 @@ MyTeam::Application.routes.draw do
   get "match_day/show"
   get "lineup/show"
   get "lineup/create"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

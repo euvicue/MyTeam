@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-    before_action :set_team, only: [:show, :edit, :update, :destroy ]
+    before_action :set_team, only: [:show, :edit, :update, :destroy, :lineup, :create_lineup]
     before_filter :authenticate_user!
 
   # GET /players
@@ -13,6 +13,12 @@ class TeamsController < ApplicationController
   def show
   end
 
+  def lineup
+  end
+
+  def create_lineup
+  end
+
   # GET /players/new
   def new
     @team = Team.new
@@ -22,20 +28,43 @@ class TeamsController < ApplicationController
   # GET /players/1/edit
   def edit
   end
+
+  # POST /teams/1/lineup
+
   # POST /players
   # POST /players.json
-  def create
+   def create
 
     @team = Team.new(team_params)
     @team.user = current_user
+    @list=[]
+    @keepers=[]
     @leagues = League.all
-    @list = []
-    while @list.length < 15
-      v = rand(Player.count)
-      @list << v unless @list.include? v
+    @keepers = Player.where("position='POR'")
+    @defenses = Player.where("position='DEF'")
+    @midfields = Player.where("position='MED'")
+    @strikers = Player.where("position='DEL'")
+
+    
+    while @list.length < 2
+      v = rand(1..@keepers.count)
+      @list << @keepers[v]
     end
-    @list.each do |i|
-      @team.players << Player.find(i)
+    while @list.length < 7
+      v = rand(1..@defenses.count)
+      @list << @defenses[v]
+    end
+    while @list.length < 13
+      v = rand(1..@midfields.count)
+      @list << @midfields[v]
+    end
+    while @list.length < 16
+      v = rand(1..@strikers.count)
+      @list << @strikers[v]
+    end
+
+    @list.each do |player|
+      @team.players << player
     end
 
     respond_to do |format|
