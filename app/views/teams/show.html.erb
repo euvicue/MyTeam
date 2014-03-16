@@ -10,7 +10,13 @@
   <%= @team.league.name %>
 </p>
 
+<h1>PLAYER LIST</h1>
+	<% @team.players.each do |player| %>
+     <p>
+ 		 <strong>Name:</strong>
+		 <%= player.shirt %>
+	 </p> 
+    <% end %>
 
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %> |
-  <a href='/lineup/index'> See lineup </a>

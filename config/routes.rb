@@ -2,13 +2,18 @@ MyTeam::Application.routes.draw do
   devise_for :users
   resources :users
   resources :players
-  resources :leagues
+  resources :leagues do
+    resources :match_day
+  end
   resources :teams
   resources :transfer_market
+  resources :team_players
   get "transferible_players/index"
   get "user_teams/index"
+  get "rankings/index"
   get "match_day/index"
   get "match/index"
+  get "match_day/show"
   get "lineup/show"
   get "lineup/create"
   # The priority is based upon order of creation: first created -> highest priority.

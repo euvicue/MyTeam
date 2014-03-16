@@ -29,11 +29,18 @@ class TeamsController < ApplicationController
     @team = Team.new(team_params)
     @team.user = current_user
     @leagues = League.all
-    player= Player.find(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
-
+    @list = []
+    while @list.length < 15
+      v = rand(Player.count)
+      @list << v unless @list.include? v
+    end
+    @list.each do |i|
+      @team.players << Player.find(i)
+    end
 
     respond_to do |format|
       if @team.save
+        
         format.html { redirect_to @team, notice: 'Team was successfully created.' }
         format.json { render action: 'show', status: :created, location: @team }
       else
@@ -41,7 +48,6 @@ class TeamsController < ApplicationController
         format.json { render json: @team.errors, status: :unprocessable_entity }
       end
     end
-    @team.team_players.create(player: player)
   end
 
   # PATCH/PUT /players/1

@@ -2,9 +2,13 @@
 <title>Matches of X. Match Day
 </title>
 <body>
-<h1>Matches of X. Match Day</h1>
-
-<table>
+<h1>Matches</h1>
+<p> Nº de equipos: <%= @equipos=@league.teams.count %></p>
+<p> Nº de jornadas: <%= @jornada = ((@league.teams.count)-1)*2 %>
+ <%= (1..@jornada).each do |j| %>
+ <p>Jornada: <%= j %> </p>
+  
+  <table>
   <thead>
     <tr>
       <th>Team Home</th>
@@ -17,11 +21,11 @@
   </thead>
 
   <tbody>
-    <% (2..(@teams.count)-1).each do |i| %>
+    <%= (1..@equipos-1).each do |i| %>
       <tr>
-        <td><%= @teams.find(i).name %></td>
+        <td><%= @league.teams.find(i).name %></td>
         <td> - </td>
-        <td><%= @teams.find(i+1).name %></td>
+        <td><%= @league.teams.find(i+1).name %></td>
         <td></td>
         <td></td>
         <td>0 - 0</td>
@@ -29,5 +33,7 @@
       <% end %>
   </tbody>
 </table>
+<% end %>
+
 </body>
 </html>

@@ -1,0 +1,32 @@
+<HTML>
+<TITLE></TITLE>
+<BODY>
+<h1>Matches of X. Match Day</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Team Home</th>
+      <th></th>
+      <th>Team Away</th>
+      <th></th>
+      <th></th>
+      <th>Results</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% (2..(@teams.count)-1).each do |i| %>
+      <tr>
+        <td><%= @teams.find(i).name %></td>
+        <td> - </td>
+        <td><%= @teams.find(i+1).name %></td>
+        <td></td>
+        <td></td>
+        <td>0 - 0</td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>
+</BODY>
+</HTML>

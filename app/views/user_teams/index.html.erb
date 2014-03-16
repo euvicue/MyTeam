@@ -11,6 +11,7 @@
     <tr>
       <th>Name</th>
       <th>League</th>
+      <th></th>
     </tr>
   </thead>
 
@@ -19,6 +20,7 @@
       <tr>
         <td><%= team.name %></td>
         <td><%= team.league.name %></td>
+        <td><td><%= link_to 'See', team_path(team.id)%></td></td>
       </tr>
     <% end %>
   </tbody>
