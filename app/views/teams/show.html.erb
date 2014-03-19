@@ -10,15 +10,40 @@
   <%= @team.league.name %>
 </p>
 
-<h1>PLAYER LIST</h1>
+<h1>TEAM PLAYER LIST</h1>
+<HR><table>
+	<% i = 1 %>
 	<% @team.players.each do |player| %>
-     <p>
- 		 <strong>Name:</strong>
-		 <%= player.shirt %>
-	 </p> 
-    <% end %>
+ 		 <tr><td>
+		 <%= i %>
+		 </td><td></td>
+		 <td>
+		 <%= player.name %>
+		 </td><td></td>
+		 <td><b>
+		 <%= player.shirt.upcase %></b>
+		 </td><td></td>
+		 <td>
+		 <%= player.realteam %>
+		 </td><td></td>
+		 <td>
+		 <%= player.nacionality %>
+		 </td><td></td>
+		 <td>
+		 <%= player.position %>
+		 </td><td></td>
+		 <td align="right">
+		 <%= player.value %>
+		 </td><td></td></tr>
+		 <% i=i+1 %>
+    <% end %><tr></tr><tr></tr>
+    <tr><td colspan = "13" align="center">VALUE TOTAL TEAM: <%= @team.players.sum('value')%></td> </tr>
+    <tr><td colspan = "13" align="center">AVERAGE VALUE PLAYERS TEAM: <%= @team.players.sum('value')/@team.players.count %></td> </tr>
 
+</table>
+
+<br><br>
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %> |
-<%= link_to 'Team lineup', :action => 'lineup', :id => @team.id  %> |
-<%= link_to 'Create lineup', :action => 'create_lineup', :id => @team.id, :param => @lineup %>
+<%= link_to 'Team lineup', :controller => 'lineup', :action => 'show', :id => @team.id, :param => @id  %> |
+<%= link_to 'Create lineup', :controller => 'lineup', :action => 'create', :id => @team.id, :param => @id %>

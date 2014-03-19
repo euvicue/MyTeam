@@ -7,9 +7,13 @@ MyTeam::Application.routes.draw do
   resources :teams
   resources :transfer_market
   resources :team_players  
+  resources :posts
 
-  get '/teams/:id/lineup', :to => 'teams#lineup', :as => 'lineup'
-  get '/teams/:id/create_lineup', :to => 'teams#create_lineup', :as => 'create_lineup'
+  get '/teams/:id/create_lineup', :to => 'lineup#create', :as => 'create_lineup'
+  get '/teams/:id/lineup', :to => 'lineup#show', :as => 'lineup'
+  get 'user/:id/teams', :to => 'user_teams#index', :as => 'list'
+ # get '/teams/:id/lineup', :to => 'teams#lineup', :as => 'lineup'
+ # get '/teams/:id/create_lineup', :to => 'teams#create_lineup', :as => 'create_lineup'
   get '/leagues/:id/match_days', :to => 'leagues#match_days', :as => 'match_days'
   get "transferible_players/index"
   get "user_teams/index"
