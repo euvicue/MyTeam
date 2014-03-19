@@ -1,8 +1,13 @@
 <HTML>
 <TITLE></TITLE>
 <BODY>
-<h1>Matches of X. Match Day</h1>
-
+<h1>Matches of <%= params[:day] %>. Match Day</h1>
+<%= id = params[:id] %>
+<% @ts=[] %>
+<% @ts = Team.all.where("league_id = id") %>
+  <% @ts.each do |team| %>
+  <%= team.name %>
+  <%  end %>
 <table>
   <thead>
     <tr>

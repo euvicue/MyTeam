@@ -16,7 +16,7 @@
      <% (1..@matchdays).each do |i| %>
       <tr>
         <td><%= i %></td>
-        <td><%= link_to 'See more', 'http://localhost:3000/match_day/show'%></td>
+        <td><%= link_to 'See Matches', :controller => 'match_day', :action => 'show', :day => i  %> |</td>
      </tr>
      <% end %>
   </tbody>
