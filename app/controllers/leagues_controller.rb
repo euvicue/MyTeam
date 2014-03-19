@@ -11,6 +11,9 @@ class LeaguesController < ApplicationController
   end
 
   def show
+    @league = League.find(params[:id]) 
+    @post = Post.new
+
     
   end
   def create

@@ -3,18 +3,21 @@ MyTeam::Application.routes.draw do
   devise_for :users
   resources :users
   resources :players
-  resources :leagues
   resources :teams
   resources :transfer_market
   resources :team_players  
   resources :posts
+  resources :leagues do
+    resources :posts
+  end
 
   get '/teams/:id/create_lineup', :to => 'lineup#create', :as => 'create_lineup'
   get '/teams/:id/lineup', :to => 'lineup#show', :as => 'lineup'
   get 'user/:id/teams', :to => 'user_teams#index', :as => 'list'
  # get '/teams/:id/lineup', :to => 'teams#lineup', :as => 'lineup'
  # get '/teams/:id/create_lineup', :to => 'teams#create_lineup', :as => 'create_lineup'
-  get '/leagues/:id/match_days', :to => 'leagues#match_days', :as => 'match_days'
+  get '/leagues/:id/match_day', :to => 'match_day#index', :as => 'match_days'
+  get '/leagues/:id/match_day/match', :to => 'match_day#show', :as => 'matches'
   get "transferible_players/index"
   get "user_teams/index"
   get "rankings/index"

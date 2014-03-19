@@ -3,37 +3,36 @@
 </title>
 <body>
 <h1>Matches</h1>
+  <% @home_rounds = [] %>
+  <% @away_rounds = [] %>
 <p> Nº de equipos: <%= @equipos=@league.teams.count %></p>
-<p> Nº de jornadas: <%= @jornada = ((@league.teams.count)-1)*2 %>
- <%= (1..@jornada).each do |j| %>
- <p>Jornada: <%= j %> </p>
-  
-  <table>
-  <thead>
-    <tr>
-      <th>Team Home</th>
-      <th></th>
-      <th>Team Away</th>
-      <th></th>
-      <th></th>
-      <th>Results</th>
-    </tr>
-  </thead>
+<p> Nº de jornadas: <%= @jornadas = ((@league.teams.count)-1)*2 %>
+<p> Nº de partidos: <%= @partidos = ((@league.teams.count)-2)+1 %>
+<% @equipos = @league.teams %>
+ <% @jornadas.times do %>
+ <% matches_home=[] %>
+ <% matches_away=[] %>
 
-  <tbody>
-    <%= (1..@equipos-1).each do |i| %>
-      <tr>
-        <td><%= @league.teams.find(i).name %></td>
-        <td> - </td>
-        <td><%= @league.teams.find(i+1).name %></td>
-        <td></td>
-        <td></td>
-        <td>0 - 0</td>
-      </tr>
-      <% end %>
-  </tbody>
-</table>
-<% end %>
+ <% @partidos.times do |index| %>
+ <% team1=  @teams[index] %>
+ <% team2=  @teams[@jornadas-index] %>
+
+ <% @home_rounds << [team1,team2] %>
+ <% @away_rounds << [team2,team1] %>
+ <% end %>
+ <% last = @equipos.pop %>
+ <% @equipos.unshift(last) %>
+ <% end %>
+
+  <% i = 1 %>
+  <% (1..@jornadas).each do |round|%>
+  <%= "Round: #{i}" %>
+  <% (1..round).each do |match| %>
+  <%= "Match: #{match[0]} - #{match[1]}" %>
+  <%  end %><br>
+  <%  i += 1 %>
+  <%end %>
+  
 
 </body>
 </html>

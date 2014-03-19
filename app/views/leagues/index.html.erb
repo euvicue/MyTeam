@@ -18,13 +18,9 @@
         <td><%= league.name %></td>
         <td><%=l league.created_at %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_league_path(league), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      league_path(league),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
+          <%= link_to t('.see', :default => t("helpers.links.see")),
+                      league_path(league), :params => 'league.id' ,:class =>'btn btn-mini'
+                      %>
         </td>
       </tr>
     <% end %>

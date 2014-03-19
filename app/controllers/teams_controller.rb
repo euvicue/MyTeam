@@ -54,7 +54,7 @@ class TeamsController < ApplicationController
       v = rand(1..@defenses.count)
       @list << @defenses[v]
     end
-    while @list.length < 13
+    while @list.length < 12
       v = rand(1..@midfields.count)
       @list << @midfields[v]
     end

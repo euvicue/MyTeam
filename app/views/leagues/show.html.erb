@@ -26,12 +26,20 @@
   </tr>
     <% end %>
   </table>
+  <br>
 <%= link_to 'Edit', edit_league_path(@league) %> |
 <%= link_to 'Back', league_path %> |
+<%= link_to 'Match Days', :controller => 'match_day', :action => 'index', :id => @league.id, :param => @id  %> 
+
 <br><br><br><br>
-
-
-<p><b> Do a comment! </b></p>
+<H5><u>COMMENTS</u> </H5>
+<HR>
+  <% Post.where("league_id = ?", params[:id]).each do |post| %>
+  <b><%= post.user.username %> at  <%= post.user.created_at %> said ...<br></b>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i><%= post.body %></i></p> 
+<% end %>
+<HR>
+<p><b><u>Do a comment!</u> </b></p>
 <hr> 
 
-<%= render :template => 'posts/_form'%>
+<%= render :template => 'posts/new' %>
