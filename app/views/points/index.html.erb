@@ -1,0 +1,28 @@
+<h1>Manage points</h1>
+
+<ul class="metadata">
+  <li>League: <strong><%= @match_day.league.name %></strong></li>
+  <li>Match day: <strong><%= @match_day.number %></strong></li>
+</ul>
+
+<%= form_tag(league_points_path(@match_day.league, @match_day), method: "post") do %>
+  <table class="table">
+    <thead>
+      <tr>
+        <td>Player</td>
+        <td>Points</td>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @players.each do |player| %>
+        <tr>
+          <td><%= player.name %></td>
+          <td><%= number_field_tag("points[#{player.id}]") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= submit_tag("Save points") %>
+<% end %>

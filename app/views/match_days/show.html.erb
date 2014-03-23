@@ -11,7 +11,7 @@
     <% @match_day.league.teams.each do |team| %>
       <tr>
         <td><%= team.name %></td>
-        <td>0 points</td>
+        <td><%= @team_points[team.id] %> points</td>
       </tr>
       <% end %>
   </tbody>

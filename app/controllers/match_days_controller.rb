@@ -11,6 +11,10 @@ class MatchDaysController < ApplicationController
 
   def show
     @match_day = MatchDay.find(params[:id])
+    @team_points = {}
+    TeamPoints.where('match_day_id = ?', @match_day.id).each do |team_point|
+      @team_points[team_point.team_id] = team_point.points
+    end
   end
 
   def create

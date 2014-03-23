@@ -11,7 +11,11 @@ MyTeam::Application.routes.draw do
   resources :posts
   resources :leagues do
     resources :posts
-    resources :match_days
+    resources :match_days do
+      member do
+        resources :points
+      end
+    end
   end
 
   get 'user/:id/teams', :to => 'user_teams#index', :as => 'list'
