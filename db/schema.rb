@@ -75,16 +75,6 @@ ActiveRecord::Schema.define(version: 20140319191303) do
   add_index "teams", ["league_id"], name: "index_teams_on_league_id"
   add_index "teams", ["user_id"], name: "index_teams_on_user_id"
 
-  create_table "transfer_markets", force: true do |t|
-    t.integer  "league_id"
-    t.integer  "player_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "transfer_markets", ["league_id"], name: "index_transfer_markets_on_league_id"
-  add_index "transfer_markets", ["player_id"], name: "index_transfer_markets_on_player_id"
-
   create_table "users", force: true do |t|
     t.string   "username",               default: "", null: false
     t.string   "email",                  default: "", null: false
