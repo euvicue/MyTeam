@@ -1,26 +1,8 @@
-<html>
-<title>Matchs Day List
-</title>
-<body>
 <h1>Matchs Day List</h1>
-<% @matchdays=((@league.teams.count)-1)*2 %>
-<table>
-  <thead>
-    <tr>
-      <th>Day</th>
-      <th></th>
-    </tr>
-  </thead>
+<h2 class="note"><%= @match_days.count %> match days</h2>
 
-  <tbody>
-     <% (1..@matchdays).each do |i| %>
-      <tr>
-        <td><%= i %></td>
-        <td><%= link_to 'See Matches', :controller => 'match_day', :action => 'show', :day => i  %> |</td>
-     </tr>
-     <% end %>
-  </tbody>
-</table>
-</body>
-</html
-
+<ul>
+  <% @match_days.each do |match_day| %>
+    <li><%= link_to "Match day #{match_day.number}", league_match_day_path(match_day.league, match_day) %></li>
+  <% end %>
+</ul>

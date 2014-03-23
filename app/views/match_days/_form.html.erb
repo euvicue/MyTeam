@@ -1,8 +1,21 @@
-<%= form_for @league, :html => { :class => 'form-horizontal' } do |f| %>
+<pre><%= @match_day.inspect %></pre>
+<%= form_for [@match_day.league, @match_day], :html => { :class => 'form-horizontal' } do |f| %>
+  <%= @match_day.inspect %>
+
   <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
+    <%= f.label :number, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :name, :class => 'text_field' %>
+      <%= f.text_field :number, :class => 'text_field' %>
+    </div>
+
+    <%= f.label :deadline, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.datetime_local_field :deadline, :class => 'datetime_local_field' %>
+    </div>
+
+    <%= f.label :weekend_date, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.datetime_local_field :weekend_date, :class => 'datetime_local_field' %>
     </div>
   </div>
 

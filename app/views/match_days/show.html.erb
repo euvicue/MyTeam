@@ -1,37 +1,18 @@
-<HTML>
-<TITLE></TITLE>
-<BODY>
-<h1>Matches of <%= params[:day] %>. Match Day</h1>
-<%= id = params[:id] %>
-<% @ts=[] %>
-<% @ts = Team.all.where("league_id = id") %>
-  <% @ts.each do |team| %>
-  <%= team.name %>
-  <%  end %>
+<h1>Match Day <%= @match_day.number %></h1>
 <table>
   <thead>
     <tr>
-      <th>Team Home</th>
-      <th></th>
-      <th>Team Away</th>
-      <th></th>
-      <th></th>
-      <th>Results</th>
+      <th>Team</th>
+      <th>Points</th>
     </tr>
   </thead>
 
   <tbody>
-    <% (2..(@teams.count)-1).each do |i| %>
+    <% @match_day.league.teams.each do |team| %>
       <tr>
-        <td><%= @teams.find(i).name %></td>
-        <td> - </td>
-        <td><%= @teams.find(i+1).name %></td>
-        <td></td>
-        <td></td>
-        <td>0 - 0</td>
+        <td><%= team.name %></td>
+        <td>0 points</td>
       </tr>
       <% end %>
   </tbody>
 </table>
-</BODY>
-</HTML>

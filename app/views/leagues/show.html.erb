@@ -1,40 +1,40 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @league.name %>
+<strong>Name:</strong>
+<%= @league.name %>
 </p>
 
 <h1>TEAMS LIST</h1>
 <table>
   <tr>
-  <th>Team
-  </th>
-  <th>Value Team
-  </th>
-  <th>Number Players
-  </th>
+    <th>Team
+    </th>
+    <th>Value Team
+    </th>
+    <th>Number Players
+    </th>
   </tr>
   <% @league.teams.each do |team| %>
-  <td><%= team.name %>
-  </td>
-  <td><%= team.players.sum('value') %>
-  </td>
-  <td>
-  <td><%= team.team_players.count %>
-  </td>
-  </tr>
-    <% end %>
-  </table>
-  <br>
+    <td><%= team.name %>
+    </td>
+    <td><%= team.players.sum('value') %>
+    </td>
+    <td>
+      <td><%= team.team_players.count %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<br>
 <%= link_to 'Edit', edit_league_path(@league) %> |
 <%= link_to 'Back', league_path %> |
-<%= link_to 'Match Days', :controller => 'match_day', :action => 'index', :id => @league.id, :param => @id  %> 
+<%= link_to 'Match Days', league_match_days_path(@league) %> 
 
 <br><br><br><br>
 <H5><u>COMMENTS</u> </H5>
 <HR>
-  <% Post.where("league_id = ?", params[:id]).each do |post| %>
+<% Post.where("league_id = ?", params[:id]).each do |post| %>
   <b><%= post.user.username %> at  <%= post.user.created_at %> said ...<br></b>
   <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i><%= post.body %></i></p> 
 <% end %>
