@@ -13,12 +13,6 @@ class TeamsController < ApplicationController
   def show
   end
 
-  def lineup
-  end
-
-  def create_lineup
-  end
-
   # GET /players/new
   def new
     @team = Team.new

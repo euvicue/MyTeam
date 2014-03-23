@@ -1,45 +1,38 @@
-<html>
-<title>Team Line up
-</title>
-<body>
-<%  @team = Team.find(params[:id]) %>
 <h1><%= @team.name%> lineup</h1>
 <p> System: 4-4-2 </p>
 <%= @team.name %>
 
-<table border="2">
-  <tr>
-    <td colspan="4">
-      <% @team.players.each do |player| %>
-      <%    if player.position == 'POR' %>
-      <%=      player.shirt %>
-      <%   end %>
-      <%   end %>
-    </td>
-  </tr>
-  <tr>
-      <% @team.players.each do |player| %>
-      <%    if player.position =='DEF' %>
-      <td><%=      player.shirt %></td>
-      <%   end %>
-      <%   end %>
-  </tr>
-  <tr>
-      <% @team.players.each do |player| %>
-      <%    if player.position == 'MED' %>
-      <td><%=      player.shirt %></td>
-      <%   end %>
-      <%   end %>
-  </tr>
-  <tr>
-      <% @team.players.each do |player| %>
-      <%    if player.position == 'DEL' %>
-      <td><%=      player.shirt %></td>
-      <%   end %>
-      <%   end %>
-  </tr>
-
-</table>
-</body>
-</html>
-
+<ul class="lineup">
+  <li>
+    <ul class="goalkeeper">
+      <li class="header"><strong>Goalkeeper</strong></li>
+      <li>
+        <%= @lineup.goalkeeper.shirt %>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <ul class="defense">
+      <li class="header"><strong>Defenses</strong></li>
+      <% @lineup.defense.each do |player| %>
+        <li><%= player.shirt %></li>
+      <% end %>
+    </ul>
+  </li>
+  <li>
+    <ul class="midfield">
+      <li class="header"><strong>Midfields</strong></li>
+      <% @lineup.midfield.each do |player| %>
+        <li><%= player.shirt %></li>
+      <% end %>
+    </ul>
+  </li>
+  <li>
+    <ul class="striker">
+      <li class="header"><strong>Strikers</strong></li>
+      <% @lineup.striker.each do |player| %>
+        <li><%= player.shirt %></li>
+      <% end %>
+    </ul>
+  </li>
+</ul>
