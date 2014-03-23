@@ -3,6 +3,8 @@
 
 <ul>
   <% @match_days.each do |match_day| %>
-    <li><%= link_to "Match day #{match_day.number}", league_match_day_path(match_day.league, match_day) %></li>
+    <li><%= link_to "Match day #{match_day.number}", league_match_day_path(@league, match_day) %></li>
   <% end %>
 </ul>
+
+<%= link_to 'Add match days', new_league_match_day_path(@league) %>

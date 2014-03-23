@@ -15,12 +15,9 @@ class PointsController < ApplicationController
       PlayerPoints.new({:match_day_id => @match_day.id, :player_id => player_id, :points => points.to_i}).save
     end
     
-    logger.debug @points.inspect
     @league.teams.each do |team|
       total_points = 0
       team.players.each do |player|
-        logger.debug player.inspect
-        logger.debug @points[player.id.to_s].inspect
         total_points = total_points + @points[player.id.to_s].to_i if @points[player.id.to_s] != ''
       end
       TeamPoints.new({:match_day_id => @match_day.id, :team_id => team.id, :points => total_points}).save

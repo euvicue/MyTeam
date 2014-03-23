@@ -2,6 +2,7 @@ class MatchDaysController < ApplicationController
   
   def index
     @match_days = MatchDay.all.where('league_id = ?', params[:league_id])
+    @league = League.find(params[:league_id])
   end
   
   def new
