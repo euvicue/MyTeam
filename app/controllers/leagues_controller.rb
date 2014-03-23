@@ -11,11 +11,10 @@ class LeaguesController < ApplicationController
   end
 
   def show
-    @league = League.find(params[:id]) 
     @post = Post.new
-
-    
+    @post.league = @league
   end
+
   def create
     @league = League.new(league_params)
     if @league.save
@@ -25,14 +24,11 @@ class LeaguesController < ApplicationController
     end 
   end
 
-  def days
-    @league=League.first    
-  end
-
   private
-    def set_league
-      @league = League.find(params[:id])
-    end
+  
+  def set_league
+    @league = League.find(params[:id])
+  end
 
   def league_params
     params.require(:league).permit(:name, :private)

@@ -9,6 +9,7 @@ MyTeam::Application.routes.draw do
   resources :posts
   resources :leagues do
     resources :posts
+    resources :match_days
   end
 
   get '/teams/:id/create_lineup', :to => 'lineup#create', :as => 'create_lineup'
@@ -16,14 +17,9 @@ MyTeam::Application.routes.draw do
   get 'user/:id/teams', :to => 'user_teams#index', :as => 'list'
  # get '/teams/:id/lineup', :to => 'teams#lineup', :as => 'lineup'
  # get '/teams/:id/create_lineup', :to => 'teams#create_lineup', :as => 'create_lineup'
-  get '/leagues/:id/match_day', :to => 'match_day#index', :as => 'match_days'
-  get '/leagues/:id/match_day/match', :to => 'match_day#show', :as => 'matches'
   get "transferible_players/index"
   get "user_teams/index"
   get "rankings/index"
-  get "match_day/index"
-  get "match/index"
-  get "match_day/show"
   get "lineup/show"
   get "lineup/create"
 

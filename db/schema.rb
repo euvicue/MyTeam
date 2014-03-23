@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140319105209) do
+ActiveRecord::Schema.define(version: 20140319191303) do
 
   create_table "leagues", force: true do |t|
     t.string   "name"
@@ -19,6 +19,17 @@ ActiveRecord::Schema.define(version: 20140319105209) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "match_days", force: true do |t|
+    t.integer  "number"
+    t.datetime "deadline"
+    t.datetime "weekend_date"
+    t.integer  "league_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "match_days", ["league_id"], name: "index_match_days_on_league_id"
 
   create_table "players", force: true do |t|
     t.string   "name"
@@ -30,24 +41,6 @@ ActiveRecord::Schema.define(version: 20140319105209) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "points", force: true do |t|
-    t.integer  "player_id"
-    t.integer  "d1"
-    t.integer  "d2"
-    t.integer  "d3"
-    t.integer  "d4"
-    t.integer  "d5"
-    t.integer  "d6"
-    t.integer  "d7"
-    t.integer  "d8"
-    t.integer  "d9"
-    t.integer  "d10"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "points", ["player_id"], name: "index_points_on_player_id"
 
   create_table "posts", force: true do |t|
     t.string   "title"
