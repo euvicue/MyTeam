@@ -52,10 +52,13 @@
               <li><%= link_to "TEAMS", "/teams"  %></li>
               <li><%= link_to "LEAGUES", "/leagues"  %></li>
               <li><%= link_to "PLAYERS", "/players"  %></li>
+              <li><%= link_to "GAME RULES", "/rules/index"  %></li>
             </ul>
+           <a href="/"><%= image_tag("logo.png", :alt => "logo", :size => "300") %></a>
+            
             <ul class="nav pull-right">
               <% if user_signed_in? %>
-                <li><%= link_to current_user.username, '/user/profile' %></li>
+                <li><%= link_to current_user.username, '.' %></li>
                 <li><%= link_to "Logout", destroy_user_session_path, :method => 'delete' %></li>
               <% else %>
                 <li><%= link_to 'Register', new_user_registration_path %></li>
@@ -75,17 +78,30 @@
               <li class="nav-header">Actions</li>
               <% if user_signed_in? %>
                 <li><%= link_to "Manage my teams", "/user/#{current_user.id}/teams" %></li>
-                <li><%= link_to "Create new league", new_league_path %></li>
+               <% if current_user.admin? %>
+                <li><%= link_to "Create new league", new_league_path %></li><% end %>
               <% end %>
-              <li><%= link_to "Find new leagues", leagues_path %></li>
+              <li><%= link_to "Find leagues", leagues_path %></li>
             </ul>
           </div><!--/.well -->
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Social Media</li>
+               
+                  <li><%= image_tag("susfb.jpg", :alt => "fb", :size => "250") %></li>
+                <li><%= image_tag("sustw.jpg", :alt => "tw", :size => "250") %></li>
+              
+            </ul>
+          </div><!--/.well -->
+          
         </div><!--/span-->
         <div class="span9">
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
       </div><!--/row-->
+
+
 
       <footer>
         <p>&copy; EVC Projects 2014</p>

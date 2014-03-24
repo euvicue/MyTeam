@@ -41,20 +41,28 @@ class TeamsController < ApplicationController
 
     
     while @list.length < 2
-      v = rand(1..@keepers.count)
+      v = rand(1..@keepers.count) 
+    if @list.include?(v)  == false
       @list << @keepers[v]
+    end
     end
     while @list.length < 7
       v = rand(1..@defenses.count)
+      if @list.include?(v) == false
       @list << @defenses[v]
+      end
     end
     while @list.length < 12
       v = rand(1..@midfields.count)
+      if @list.include?(v) == false
       @list << @midfields[v]
+    end
     end
     while @list.length < 16
       v = rand(1..@strikers.count)
+      if @list.include?(v) == false
       @list << @strikers[v]
+    end
     end
 
     @list.each do |player|

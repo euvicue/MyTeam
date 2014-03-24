@@ -1,4 +1,5 @@
 class MatchDaysController < ApplicationController
+    before_filter :check_privileges!, only: [:new, :create, :edit, :save]
   
   def index
     @match_days = MatchDay.all.where('league_id = ?', params[:league_id])

@@ -1,37 +1,47 @@
-<h1>Listing players</h1>
-
-<table>
+<%- model_class = Player -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Realteam</th>
-      <th>Shirt</th>
-      <th>Position</th>
-      <th>Nacionality</th>
-      <th>Value</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:shirt) %></th>
+      <th><%= model_class.human_attribute_name(:nacionality) %></th>
+      <th><%= model_class.human_attribute_name(:position) %></th>
+      <th><%= model_class.human_attribute_name(:realteam) %></th>
+      <th><%= model_class.human_attribute_name(:value) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @players.each do |player| %>
       <tr>
+        <td><%= link_to player.id, player_path(player) %></td>
         <td><%= player.name %></td>
-        <td><%= player.realteam %></td>
         <td><%= player.shirt %></td>
-        <td><%= player.position %></td>
         <td><%= player.nacionality %></td>
+        <td><%= player.position %></td>
+        <td><%= player.realteam %></td>
         <td><%= player.value %></td>
-        <td><%= link_to 'Show', player %></td>
-        <td><%= link_to 'Edit', edit_player_path(player) %></td>
-        <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to t('.see', :default => t("helpers.links.see")),
+                      player_path(player), :params => 'player.id' ,:class =>'btn btn-mini'
+                      %>
+          <%if current_user.try(:admin?)%>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_player_path(player), :actions=> 'edit' ,:params => 'player.id' ,:class =>'btn btn-mini'
+                      %>
+          <%= link_to t('.delete', :default => t("helpers.links.delete")),player, method: :delete, data: { confirm: 'Are you sure?' }, :class =>'btn btn-mini'
+                       %>
+                       <%end%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Player', new_player_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_team_path,
+            :class => 'btn btn-primary' %>

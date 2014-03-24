@@ -1,20 +1,27 @@
 <h1>Match Day <%= @match_day.number %></h1>
-<table>
+
+
+<%- model_class = MatchDay -%>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Team</th>
-      <th>Points</th>
+      <th><%= model_class.human_attribute_name(:team) %></th>
+      <th><%= model_class.human_attribute_name(:points) %></th>
     </tr>
   </thead>
-
   <tbody>
-    <% @match_day.league.teams.each do |team| %>
+    <% @table = @match_day.league.teams %>
+    <% @table.each do |team| %>
       <tr>
         <td><%= team.name %></td>
-        <td><%= @team_points[team.id] %> points</td>
+        <td><%= @team_points[team.id] %></td>
       </tr>
       <% end %>
   </tbody>
 </table>
-
-<%= link_to 'Manage match day points', league_points_path(@match_day.league, @match_day) %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+                      league_path(@league), :actions=> 'show' ,:params => 'league.id' ,:class =>'btn btn-mini'
+                      %>
+<% if current_user.admin? %>
+  <%= link_to t('.Manage match day points'),  league_points_path(@match_day.league, @match_day) , :class =>'btn btn-mini' %>
+<%end%>

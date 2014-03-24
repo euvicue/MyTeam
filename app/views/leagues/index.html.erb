@@ -7,6 +7,7 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:teams) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -16,17 +17,26 @@
       <tr>
         <td><%= link_to league.id, league_path(league) %></td>
         <td><%= league.name %></td>
-        <td><%=l league.created_at %></td>
+        <td><%= league.teams.count %></td>
+        <td><%= league.created_at %></td>
         <td>
           <%= link_to t('.see', :default => t("helpers.links.see")),
                       league_path(league), :params => 'league.id' ,:class =>'btn btn-mini'
                       %>
+                      <% if current_user.admin? %>
+                      <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_league_path(league), :actions=> 'edit' ,:params => 'league.id' ,:class =>'btn btn-mini'
+                      %>
+                      <%= link_to t('.delete', :default => t("helpers.links.delete")),league, method: :delete, data: { confirm: 'Are you sure?' }, :class =>'btn btn-mini'
+                       %>
+                      <% end %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+<% if current_user.admin? %>
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_league_path,
             :class => 'btn btn-primary' %>
+            <% end %>

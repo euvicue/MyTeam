@@ -1,49 +1,65 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @team.name %>
-</p>
+<h1 align="center"><%= @team.name %></h1>
+<hr>
+<p align="center"><%= @team.league.name %></p>
+<br>
 
-<p>
-  <strong>Name:</strong>
-  <%= @team.league.name %>
-</p>
+<h4>TEAM PLAYER LIST</h4>
+<%- model_class = Team -%>
 
-<h1>TEAM PLAYER LIST</h1>
-<HR><table>
-	<% i = 1 %>
-	<% @team.players.each do |player| %>
- 		 <tr><td>
-		 <%= i %>
-		 </td><td></td>
-		 <td>
-		 <%= player.name %>
-		 </td><td></td>
-		 <td><b>
-		 <%= player.shirt.upcase %></b>
-		 </td><td></td>
-		 <td>
-		 <%= player.realteam %>
-		 </td><td></td>
-		 <td>
-		 <%= player.nacionality %>
-		 </td><td></td>
-		 <td>
-		 <%= player.position %>
-		 </td><td></td>
-		 <td align="right">
-		 <%= player.value %>
-		 </td><td></td></tr>
-		 <% i=i+1 %>
-    <% end %><tr></tr><tr></tr>
-    <tr><td colspan = "13" align="center">VALUE TOTAL TEAM: <%= @team.players.sum('value')%></td> </tr>
-    <tr><td colspan = "13" align="center">AVERAGE VALUE PLAYERS TEAM: <%= @team.players.sum('value')/@team.players.count %></td> </tr>
-
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:shirt) %></th>
+      <th><%= model_class.human_attribute_name(:nacionality) %></th>
+      <th><%= model_class.human_attribute_name(:position) %></th>
+      <th><%= model_class.human_attribute_name(:realteam) %></th>
+      <th><%= model_class.human_attribute_name(:value) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+  		<% i = 1 %>
+    <% @team.players.each do |player| %>
+      <tr>
+        <td><%= link_to i, player_path(player.id) %></td>
+        <td><%= player.name %></td>
+        <td><b><%= player.shirt.upcase %></b></td>
+        <td><%= player.nacionality %></td>
+        <td><%= player.position %></td>
+        <td><%= player.realteam %></td>
+        <td align="center"><%= player.value %></td>
+        <td>
+          <%= link_to t('.see', :default => t("helpers.links.see")),
+                      player_path(player), :params => 'player.id' ,:class =>'btn btn-mini'
+                      %>
+          <% if current_user.admin? %>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_player_path(player), :actions=> 'edit' ,:params => 'player.id' ,:class =>'btn btn-mini'
+                      %>
+          <%= link_to t('.delete', :default => t("helpers.links.delete")),@team, method: ":delete", data: { confirm: 'Are you sure?' }, :class =>'btn btn-mini'
+                       %>
+                       <%end%>
+        </td>
+      </tr>
+      <% i=i+1 %>
+    <% end %>
+  </tbody>
 </table>
+
+    <p align="right"><b>TOTAL VALUE TEAM:</b> <%= @team.players.sum('value')%></p>
+    <p align="right"><b>AVERAGE VALUE PLAYERS TEAM:</b> <%= @team.players.sum('value')/@team.players.count %></p>
+    <p align="right"><b>THE MOST VALUABLE PLAYER TEAM:</b> <%=@team.players.order('value DESC').first.shirt %> - <%=@team.players.order('value DESC').first.value%> </p>
+    <p align="right"><b>THE LEAST VALUABLE PLAYER TEAM:</b> <%=@team.players.order('value ASC').first.shirt %> - <%=@team.players.order('value ASC').first.value%> </p>
 
 <br><br>
 <%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %> |
-<%= link_to 'Team lineup', :controller => 'lineup', :action => 'show', :id => @team.id, :param => @id  %> |
-<%= link_to 'Create lineup', :controller => 'lineup', :action => 'create', :id => @team.id, :param => @id %>
+<%= link_to 'Back',:controller => 'user_teams', :action => 'index', :id => @team.id, :param => @id  %> 
+
+
+
+
+

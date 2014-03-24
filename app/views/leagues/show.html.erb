@@ -1,45 +1,59 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-<strong>Name:</strong>
-<%= @league.name %>
-</p>
+<h1 align="center"><%= @league.name %></h1>
+<hr>
+<br><br>
 
-<h1>TEAMS LIST</h1>
-<table>
-  <tr>
-    <th>Team
-    </th>
-    <th>Value Team
-    </th>
-    <th>Number Players
-    </th>
-  </tr>
-  <% @league.teams.each do |team| %>
-    <td><%= team.name %>
-    </td>
-    <td><%= team.players.sum('value') %>
-    </td>
-    <td>
-      <td><%= team.team_players.count %>
-      </td>
+<h4>TEAMS LIST</h4>
+<%- model_class = League -%>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:value) %></th>
+      <th><%= model_class.human_attribute_name(:players) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
-  <% end %>
+  </thead>
+  <tbody>
+    <% @league.teams.each do |team| %>
+      <tr>
+        <td><%= link_to team.id, team_path(team) %></td>
+        <td><%= team.name %></td>
+        <td><%= team.players.sum('value') %></td>
+        <td><%= team.team_players.count %></td>
+        <td>
+          <%= link_to t('.see', :default => t("helpers.links.see")),
+                      team_path(team), :params => 'team.id' ,:class =>'btn btn-mini'
+                      %>
+          <% if current_user.admin? %>
+                      <%= link_to t('.back', :default => t("helpers.links.edit")),
+                      league_path(@league), :actions=> 'edit' ,:params => 'league.id' ,:class =>'btn btn-mini'
+                      %>
+
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
-<br>
-<%= link_to 'Edit', edit_league_path(@league) %> |
-<%= link_to 'Back', league_path %> |
-<%= link_to 'Match Days', league_match_days_path(@league) %> 
+  <br>
+
+          <% if current_user.admin? %>
+          <%= link_to 'Edit', edit_league_path(@league) %> |
+          <%end%>
+          <%= link_to 'Back', leagues_path %> |
+          <%= link_to 'Match Days', league_match_days_path(@league) %> 
 
 <br><br><br><br>
 <H5><u>COMMENTS</u> </H5>
 <HR>
-<% Post.where("league_id = ?", params[:id]).each do |post| %>
+  <% Post.where("league_id = ?", params[:id]).each do |post| %>
   <b><%= post.user.username %> at  <%= post.user.created_at %> said ...<br></b>
   <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i><%= post.body %></i></p> 
 <% end %>
 <HR>
 <p><b><u>Do a comment!</u> </b></p>
-<hr> 
 
 <%= render :template => 'posts/new' %>

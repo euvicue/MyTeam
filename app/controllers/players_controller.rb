@@ -1,6 +1,6 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: [:show, :edit, :update, :destroy ]
-
+before_filter :check_privileges!, only: [:new, :create, :edit, :save]
   # GET /players
   # GET /players.json
   def index

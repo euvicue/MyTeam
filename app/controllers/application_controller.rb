@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
   def index
   end
 
+  def check_privileges!
+  	redirect_to "/", alert: 'You dont have enough permissions to be here' unless current_user.admin?
+  end
+
   protected
 
   def configure_permitted_parameters

@@ -1,17 +1,28 @@
-<h1>Users</h1>
 
-<%= link_to 'Create new user', new_user_path %>
 
-<ul class="users">
-  <% @users.each do |user| %>
-    <li><%= user.name %></li>
-    <li><%= user.surname %></li>
-    <li><%= user.idcard %></li>
-    <li><%= user.nickname %></li>
-    <li><%= user.email %></li>
-    <li><%= user.phone %></li>
-    <li><%= user.postalcode %></li>
-    <li><%= user.password %></li>
-    <li><%= user.alerts %></li>
-  <% end %>
-</ul>
+<%- model_class = User -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:username) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% User.all.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.username %></td>
+        <td><%= user.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+            "/",
+            :class => 'btn btn-primary' %>

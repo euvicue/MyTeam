@@ -29,6 +29,7 @@
   <strong>Value:</strong>
   <%= @player.value %>
 </p>
-
-<%= link_to 'Edit', edit_player_path(@player) %> |
+          <% if current_user.admin? %>
+          <%= link_to 'Edit', edit_player_path(@player) %> |
+          <%end%>
 <%= link_to 'Back', players_path %>

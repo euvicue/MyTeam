@@ -15,9 +15,10 @@
     </thead>
 
     <tbody>
-      <% @players.each do |player| %>
+      <% @players.distinct.each do |player| %>
         <tr>
           <td><%= player.name %></td>
+          <td><b><%= player.shirt.upcase %></b></td>
           <td><%= number_field_tag("points[#{player.id}]") %></td>
         </tr>
       <% end %>

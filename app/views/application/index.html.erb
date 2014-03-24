@@ -1,6 +1,20 @@
-<h1>Welcome to MyTeam</h1>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt sit amet magna id consectetur. In posuere vehicula suscipit. Etiam bibendum sagittis odio, vel vestibulum diam placerat eget. Nulla faucibus lacus a enim pulvinar dignissim. Integer a mauris vulputate, pretium quam in, imperdiet nisi. Nulla a velit turpis. Nullam sed malesuada urna, eu consequat orci. In faucibus risus quis nunc varius consectetur. Aliquam mattis, tortor a mattis imperdiet, nulla lacus hendrerit elit, quis accumsan massa magna ac magna. Phasellus vehicula, massa non cursus porttitor, quam tellus ultrices eros, nec pharetra nisi justo vitae lectus. Sed vel odio metus. Sed ac gravida sapien, vel hendrerit ligula. Morbi id ipsum condimentum, blandit lacus id, tempus ipsum. Quisque porta feugiat orci, a blandit orci. Morbi interdum nibh eleifend consectetur tristique.</p>
+<% if user_signed_in? %>
+ <% if current_user.admin? %>
+ 				<h3 align="center">ADMINISTRATOR MENU</H3>
+                <table align = "center">
+                	
+                	<tr><td><a href="/players">1. MANAGE PLAYERS</a> </td></tr>
+                	<tr><td><a href="/teams">2. MANAGE TEAMS</a> </td></tr>
+                	<tr><td><a href="/leagues">3. MANAGE LEAGUES</a> </td></tr>
+                	<tr><td><a href="/users">4. MANAGE USERS</a> </td></tr>
+                	
+                </table>
+ <br><br>
+ <% end %>
+ <% end %>
+
+<h1>Welcome to MyTeam !!</h1>
 
 <center><P><b> STATISTICS </b></P></center>
 <hr>
@@ -46,17 +60,17 @@
 		<% end %>
 </table>
 </td><td width='350' align='center'>
-<P><B>TOP 5 MORE PUNCTUATED PLAYERS</B> </P>
+<P><B>TOP 5 MORE PUNCTUATED PLAYERS IN ONE MATCH DAY</B> </P>
 <table border='1' align='center'>
 	<tr align='center'><td><u>PLAYER</u></td><td align='center'><u>POINTS</u></td></font>
 	</tr>
 	<tr>
-		<% Player.order('value').limit(5).each do |p| %>
+		<% PlayerPoints.order('points DESC').limit(5).each do |p| %>
 		<td width='200'><b>
-		<%= p.shirt %>
+		<%= Player.find(p.player_id).shirt %>
 		</b></td>
 		<td align='right'>
-		<%= p.value %>	
+		<%= p.points %>	
 		</td>
 	</tr>
 		<% end %>
